@@ -87,7 +87,7 @@ def log(update, context):
 
 
 help_string_telegraph = f'''<br>
-<b>/{BotCommands.Help1Command}</b>: To get this message
+<b>/{BotCommands.HelpCommand}</b>: To get this message
 <br><br>
 <b>/{BotCommands.MirrorCommand}</b> [download_url][magnet_link]: Start mirroring the link to Google Drive.
 <br><br>
@@ -192,7 +192,6 @@ botcmds = [
         (f'{BotCommands.QbZipMirror1Command}','Start mirroring and upload as .zip using qb'),
         (f'{BotCommands.QbUnzipMirror1Command}','Extract files using qBitorrent'),
         (f'{BotCommands.Clone1Command}','Copy file/folder to Drive'),
-        (f'{BotCommands.Count1Command}','Count file/folder of Drive link'),
         (f'{BotCommands.Delete1Command}','Delete file from Drive'),
         (f'{BotCommands.Watch1Command}','Mirror Youtube-dl support link'),
         (f'{BotCommands.TarWatch1Command}','Mirror Youtube playlist link as .tar'),
