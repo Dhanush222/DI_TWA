@@ -156,7 +156,7 @@ help_string_telegraph = f'''<br>
 help = Telegraph(access_token=telegraph_token).create_page(
         title='BeastCloud Search',
         author_name='Vijay D',
-        author_url='@VijayD0211',
+        author_url='https://t.me/BeastCloudOfficial',
         html_content=help_string_telegraph,
     )["path"]
 
