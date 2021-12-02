@@ -145,7 +145,7 @@ help_string_telegraph = f'''<br>
 <br><br>
 <b>/{BotCommands.CancelMirror}</b>: Reply to the message by which the download was initiated and that download will be cancelled
 <br><br>
-<b>/{BotCommands.CancelAll1Command}</b>: Cancel all running tasks
+<b>/{BotCommands.CancelAllCommand}</b>: Cancel all running tasks
 <br><br>
 <b>/{BotCommands.ListCommand}</b> [search term]: Searches the search term in the Google Drive, If found replies with the link
 <br><br>
