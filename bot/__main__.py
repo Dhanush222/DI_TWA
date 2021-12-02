@@ -56,7 +56,7 @@ Type /{BotCommands.HelpCommand} to get a list of available commands
         sendMarkup(start_string, context.bot, update, reply_markup)
     else:
         sendMarkup(
-            'Oops! not a Authorized user.\nPlease deploy your own <b>BeastCloud</b>.',
+            'Oops! not a Authorized user.\nPlease deploy your own <b>BeastCloud-Bot</b>.',
             context.bot,
             update,
             reply_markup,
@@ -87,6 +87,8 @@ def log(update, context):
 
 
 help_string_telegraph = f'''<br>
+<b>/{BotCommands.Help1Command}</b>: To get this message
+<br><br>
 <b>/{BotCommands.MirrorCommand}</b> [download_url][magnet_link]: Start mirroring the link to Google Drive.
 <br><br>
 <b>/{BotCommands.TarMirrorCommand}</b> [download_url][magnet_link]: Start mirroring and upload the archived (.tar) version of the download
@@ -121,6 +123,8 @@ help_string_telegraph = f'''<br>
 <br><br>
 <b>/{BotCommands.CloneCommand}</b> [drive_url]: Copy file/folder to Google Drive
 <br><br>
+<b>/{BotCommands.CountCommand}</b> [drive_url]: Count file/folder of Google Drive Links
+<br><br>
 <b>/{BotCommands.DeleteCommand}</b> [drive_url]: Delete file from Google Drive (Only Owner & Sudo)
 <br><br>
 <b>/{BotCommands.WatchCommand}</b> [youtube-dl supported link]: Mirror through youtube-dl. Click <b>/{BotCommands.WatchCommand}</b> for more help
@@ -141,7 +145,7 @@ help_string_telegraph = f'''<br>
 <br><br>
 <b>/{BotCommands.CancelMirror}</b>: Reply to the message by which the download was initiated and that download will be cancelled
 <br><br>
-<b>/{BotCommands.CancelAllCommand}</b>: Cancel all running tasks
+<b>/{BotCommands.CancelAll1Command}</b>: Cancel all running tasks
 <br><br>
 <b>/{BotCommands.ListCommand}</b> [search term]: Searches the search term in the Google Drive, If found replies with the link
 <br><br>
@@ -151,13 +155,24 @@ help_string_telegraph = f'''<br>
 '''
 help = Telegraph(access_token=telegraph_token).create_page(
         title='BeastCloud Search',
-        author_name='@DVijayD0211',
-        author_url='https://t.me/BeastCloudOfficial',
+        author_name='Vijay D',
+        author_url='@VijayD0211',
         html_content=help_string_telegraph,
     )["path"]
 
 help_string = f'''
+/{BotCommands.PingCommand}: Check how long it takes to Ping the Bot
+/{BotCommands.AuthorizeCommand}: Authorize a chat or a user to use the bot (Can only be invoked by Owner & Sudo of the bot)
+/{BotCommands.UnAuthorizeCommand}: Unauthorize a chat or a user to use the bot (Can only be invoked by Owner & Sudo of the bot)
+/{BotCommands.AuthorizedUsersCommand}: Show authorized users (Only Owner & Sudo)
+/{BotCommands.AddSudoCommand}: Add sudo user (Only Owner)
+/{BotCommands.RmSudoCommand}: Remove sudo users (Only Owner)
 /{BotCommands.RestartCommand}: Restart the bot
+/{BotCommands.LogCommand}: Get a log file of the bot. Handy for getting crash reports
+/{BotCommands.SpeedCommand}: Check Internet Speed of the Host
+/{BotCommands.ShellCommand}: Run commands in Shell (Only Owner)
+/{BotCommands.ExecHelpCommand}: Get help for Executor module (Only Owner)
+/{BotCommands.TsHelpCommand}: Get help for Torrent search module
 '''
 
 def bot_help(update, context):
@@ -168,25 +183,26 @@ def bot_help(update, context):
 
 '''
 botcmds = [
-        (f'{BotCommands.MirrorCommand}', 'Start Mirroring'),
-        (f'{BotCommands.TarMirrorCommand}','Start mirroring and upload as .tar'),
-        (f'{BotCommands.ZipMirrorCommand}','Start mirroring and upload as .zip'),
-        (f'{BotCommands.UnzipMirrorCommand}','Extract files'),
-        (f'{BotCommands.QbMirrorCommand}','Start Mirroring using qBittorrent'),
-        (f'{BotCommands.QbTarMirrorCommand}','Start mirroring and upload as .tar using qb'),
-        (f'{BotCommands.QbZipMirrorCommand}','Start mirroring and upload as .zip using qb'),
-        (f'{BotCommands.QbUnzipMirrorCommand}','Extract files using qBitorrent'),
-        (f'{BotCommands.CloneCommand}','Copy file/folder to Drive'),
-        (f'{BotCommands.DeleteCommand}','Delete file from Drive'),
-        (f'{BotCommands.WatchCommand}','Mirror Youtube-dl support link'),
-        (f'{BotCommands.TarWatchCommand}','Mirror Youtube playlist link as .tar'),
-        (f'{BotCommands.ZipWatchCommand}','Mirror Youtube playlist link as .zip'),
-        (f'{BotCommands.CancelMirror}','Cancel a task'),
-        (f'{BotCommands.CancelAllCommand}','Cancel all tasks'),
-        (f'{BotCommands.ListCommand}','Searches files in Drive'),
-        (f'{BotCommands.StatusCommand}','Get Mirror Status message'),
-        (f'{BotCommands.StatsCommand}','Bot Usage Stats'),
-        (f'{BotCommands.RestartCommand}','Restart the bot [owner/sudo only]'),
+        (f'{BotCommands.Mirror1Command}', 'Start Mirroring'),
+        (f'{BotCommands.TarMirror1Command}','Start mirroring and upload as .tar'),
+        (f'{BotCommands.ZipMirror1Command}','Start mirroring and upload as .zip'),
+        (f'{BotCommands.UnzipMirror1Command}','Extract files'),
+        (f'{BotCommands.QbMirror1Command}','Start Mirroring using qBittorrent'),
+        (f'{BotCommands.QbTarMirror1Command}','Start mirroring and upload as .tar using qb'),
+        (f'{BotCommands.QbZipMirror1Command}','Start mirroring and upload as .zip using qb'),
+        (f'{BotCommands.QbUnzipMirror1Command}','Extract files using qBitorrent'),
+        (f'{BotCommands.Clone1Command}','Copy file/folder to Drive'),
+        (f'{BotCommands.Count1Command}','Count file/folder of Drive link'),
+        (f'{BotCommands.Delete1Command}','Delete file from Drive'),
+        (f'{BotCommands.Watch1Command}','Mirror Youtube-dl support link'),
+        (f'{BotCommands.TarWatch1Command}','Mirror Youtube playlist link as .tar'),
+        (f'{BotCommands.ZipWatch1Command}','Mirror Youtube playlist link as .zip'),
+        (f'{BotCommands.Cancel1Mirror}','Cancel a task'),
+        (f'{BotCommands.CancelAll1Command}','Cancel all tasks'),
+        (f'{BotCommands.List1Command}','Searches files in Drive'),
+        (f'{BotCommands.Status1Command}','Get Mirror Status message'),
+        (f'{BotCommands.Stats1Command}','Bot Usage Stats'),
+        (f'{BotCommands.Restart1Command}','Restart the bot [owner/sudo only]'),
     ]
 '''
 
@@ -202,7 +218,7 @@ def main():
         os.remove(".restartmsg")
     elif OWNER_ID:
         try:
-            text = "<b>Bot Restarted!</b>"
+            text = "<b>♻️Bot Restarted Successfully!</b>"
             bot.sendMessage(chat_id=OWNER_ID, text=text, parse_mode=ParseMode.HTML)
             if AUTHORIZED_CHATS:
                 for i in AUTHORIZED_CHATS:
@@ -212,14 +228,14 @@ def main():
     # bot.set_my_commands(botcmds)
     start_handler = CommandHandler(BotCommands.StartCommand, start, run_async=True)
     ping_handler = CommandHandler(BotCommands.PingCommand, ping,
-                                  filters=CustomFilters.authorized_chat | CustomFilters.authorized_user, run_async=False)
+                                  filters=CustomFilters.authorized_chat | CustomFilters.authorized_user, run_async=True)
     restart_handler = CommandHandler(BotCommands.RestartCommand, restart,
                                      filters=CustomFilters.owner_filter | CustomFilters.sudo_user, run_async=True)
     help_handler = CommandHandler(BotCommands.HelpCommand,
-                                  bot_help, filters=CustomFilters.authorized_chat | CustomFilters.authorized_user, run_async=False)
+                                  bot_help, filters=CustomFilters.authorized_chat | CustomFilters.authorized_user, run_async=True)
     stats_handler = CommandHandler(BotCommands.StatsCommand,
                                    stats, filters=CustomFilters.authorized_chat | CustomFilters.authorized_user, run_async=True)
-    log_handler = CommandHandler(BotCommands.LogCommand, log, filters=CustomFilters.owner_filter | CustomFilters.sudo_user, run_async=False)
+    log_handler = CommandHandler(BotCommands.LogCommand, log, filters=CustomFilters.owner_filter | CustomFilters.sudo_user, run_async=True)
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(ping_handler)
     dispatcher.add_handler(restart_handler)
